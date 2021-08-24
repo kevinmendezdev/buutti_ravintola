@@ -3,18 +3,12 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-abstract class CartState extends Equatable {
-  const CartState();
-  @override
-  List<Object?> get props => [];
-}
-
-class CartLoading extends CartState {}
-
-class CartLoaded extends CartState {
+class CartState extends Equatable {
   final List<MenuItem> menuItems;
-
-  CartLoaded(this.menuItems);
+  const CartState({required this.menuItems}) : super();
   @override
-  List<Object> get props => [menuItems];
+  List<Object?> get props => [menuItems];
+
+  CartState copyWith({required List<MenuItem> menuItems}) =>
+      CartState(menuItems: menuItems);
 }

@@ -6,21 +6,27 @@ import 'package:buutti_ravintola/core/model/menu_item.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
   final List<MenuItem> menuItems = [];
-  CartBloc() : super(CartLoading());
+  CartBloc() : super(CartState(menuItems: []));
 
   @override
   Stream<CartState> mapEventToState(
     CartEvent event,
   ) async* {
-    if (event is LoadCart) {
-      yield CartLoading();
-      yield CartLoaded(menuItems);
-    } else if (event is AddMenuItem) {
+    if (event is AddMenuItem) {
       menuItems.add(event.menuItem);
-      yield CartLoaded(menuItems);
+      print('item added');
+      for (var item in menuItems) {
+        print(item.name);
+      }
+      yield state.copyWith(menuItems: menuItems);
     } else if (event is DeleteMenuItem) {
-      menuItems.remove(event.menuItem);
-      yield CartLoaded(menuItems);
+      menuItems.removeWhere((element) => element.name == event.menuItem.name);
+      // menuItems = [];
+      print('items left');
+      for (var item in menuItems) {
+        print(item.name);
+      }
+      yield state.copyWith(menuItems: menuItems);
     }
   }
 }

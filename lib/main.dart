@@ -81,24 +81,20 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               BlocBuilder<CartBloc, CartState>(
                 builder: (context, state) {
-                  if (state is CartLoaded) {
-                    print('cart length');
-                    print(state.menuItems.length);
-                    return Positioned(
-                        top: 0.0,
-                        right: 4.0,
-                        child: Center(
-                          child: Text(
-                            state.menuItems.length.toString(),
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ));
-                  } else {
-                    return SizedBox();
-                  }
+                  print('cart length');
+                  print(state.menuItems.length);
+                  return Positioned(
+                      top: 0.0,
+                      right: 4.0,
+                      child: Center(
+                        child: Text(
+                          state.menuItems.length.toString(),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ));
                 },
               ),
             ],

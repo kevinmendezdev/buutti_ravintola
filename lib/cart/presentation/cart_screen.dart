@@ -15,17 +15,11 @@ class CartScreen extends StatelessWidget {
       body: Center(
         child: BlocBuilder<CartBloc, CartState>(
           builder: (context, state) {
-            if (state is CartLoading) {
-              return CircularProgressIndicator();
-            } else if (state is CartLoaded) {
-              return ListView.builder(
-                  itemCount: state.menuItems.length,
-                  itemBuilder: (context, index) {
-                    return ItemTile(name: state.menuItems[index].name);
-                  });
-            } else {
-              return Text('hola');
-            }
+            return ListView.builder(
+                itemCount: state.menuItems.length,
+                itemBuilder: (context, index) {
+                  return ItemTile(name: state.menuItems[index].name);
+                });
           },
         ),
       ),
