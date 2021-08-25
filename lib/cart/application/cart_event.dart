@@ -29,3 +29,5 @@ class DeleteMenuItem extends CartEvent {
   @override
   List<Object> get props => [menuItem];
 }
+
+class DeleteAllMenuItem extends CartEvent {}

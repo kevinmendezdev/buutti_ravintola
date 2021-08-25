@@ -27,6 +27,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         print(item.name);
       }
       yield state.copyWith(menuItems: menuItems);
+    } else if (event is DeleteAllMenuItem) {
+      menuItems.clear();
+      yield state.copyWith(menuItems: menuItems);
     }
   }
 }

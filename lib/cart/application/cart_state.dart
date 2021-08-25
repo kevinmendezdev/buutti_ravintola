@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 @immutable
 class CartState extends Equatable {
   final List<MenuItem> menuItems;
+
   const CartState({required this.menuItems}) : super();
   @override
   List<Object?> get props => [menuItems];
