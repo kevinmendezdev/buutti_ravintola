@@ -12,4 +12,6 @@ class CartState extends Equatable {
 
   CartState copyWith({required List<MenuItem> menuItems}) =>
       CartState(menuItems: menuItems);
+  @override
+  String toString() => 'MenuItems { menuItems: $menuItems }';
 }

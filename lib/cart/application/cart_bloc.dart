@@ -18,7 +18,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       for (final item in menuItems) {
         print(item.name);
       }
-      yield state.copyWith(menuItems: menuItems);
+      yield state.copyWith(menuItems: List.of(menuItems));
     } else if (event is DeleteMenuItem) {
       menuItems.removeWhere((element) => element.name == event.menuItem.name);
       // menuItems = [];
@@ -26,7 +26,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       for (final item in menuItems) {
         print(item.name);
       }
-      yield state.copyWith(menuItems: menuItems);
+      yield state.copyWith(menuItems: List.of(menuItems));
     } else if (event is DeleteAllMenuItem) {
       menuItems.clear();
       yield state.copyWith(menuItems: menuItems);
