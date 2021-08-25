@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'cart/application/bloc.dart';
 import 'core/helpers/simple_bloc_observer.dart';
-import 'home_screen.dart';
+import 'presentation/screens/home_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

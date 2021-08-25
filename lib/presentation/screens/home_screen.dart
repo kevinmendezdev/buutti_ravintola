@@ -1,7 +1,7 @@
+import 'package:buutti_ravintola/presentation/screens/main_dish_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'buutti_logo.dart';
-import 'order_screen.dart';
+import '../../buutti_logo.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const OrderScreen()),
+                        builder: (context) => const MainDishScreen()),
                   );
                 },
               )
