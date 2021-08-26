@@ -5,15 +5,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../cart/application/bloc.dart';
 import '../../core/model/menu_item.dart';
 
-class MenuItemTile extends StatefulWidget {
+class MenuItemTilePressable extends StatefulWidget {
   final MenuItem menuItem;
-  const MenuItemTile({Key? key, required this.menuItem}) : super(key: key);
+  const MenuItemTilePressable({
+    Key? key,
+    required this.menuItem,
+  }) : super(key: key);
 
   @override
-  _MenuItemTileState createState() => _MenuItemTileState();
+  _MenuItemTilePressableState createState() => _MenuItemTilePressableState();
 }
 
-class _MenuItemTileState extends State<MenuItemTile> {
+class _MenuItemTilePressableState extends State<MenuItemTilePressable> {
   late bool _selectedItem;
   late CartBloc _cartBloc;
   @override
@@ -27,81 +30,103 @@ class _MenuItemTileState extends State<MenuItemTile> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        setState(() {
-          _selectedItem = !_selectedItem;
-          if (_selectedItem) {
-            _cartBloc.add(AddMenuItem(MenuItem(
-                name: widget.menuItem.name,
-                type: widget.menuItem.type,
-                image: widget.menuItem.image)));
-          } else {
-            _cartBloc.add(DeleteMenuItem(MenuItem(
-                name: widget.menuItem.name,
-                type: widget.menuItem.type,
-                image: widget.menuItem.image)));
-          }
-        });
-      },
-      child: Container(
-        padding: EdgeInsets.fromLTRB(10, 10, 40, 10),
-        child: Row(
-          // crossAxisAlignment: CrossAxisAlignment.start,
+        onTap: () {
+          setState(() {
+            _selectedItem = !_selectedItem;
+            if (_selectedItem) {
+              _cartBloc.add(AddMenuItem(MenuItem(
+                  name: widget.menuItem.name,
+                  type: widget.menuItem.type,
+                  image: widget.menuItem.image)));
+            } else {
+              _cartBloc.add(DeleteMenuItem(MenuItem(
+                  name: widget.menuItem.name,
+                  type: widget.menuItem.type,
+                  image: widget.menuItem.image)));
+            }
+          });
+        },
+        child: Stack(
           children: [
-            CachedNetworkImage(
-              imageUrl: widget.menuItem.image,
-              imageBuilder: (context, imageProvider) => Stack(
-                children: [
-                  Container(
-                    width: 130,
-                    height: 130,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(10)),
-                      image: DecorationImage(
-                          image: imageProvider, fit: BoxFit.cover),
-                    ),
-                  ),
-                ],
-              ),
-              placeholder: (context, url) => const SizedBox(
+            MenuItemTile(
+              menuItem: widget.menuItem,
+            ),
+            Positioned(
+                right: 10,
+                top: 50,
+                child: Icon(_selectedItem
+                    //  && state.menuItems.any((element) => element.name == widget.menuItem.name)
+                    ? Icons.check
+                    : null))
+          ],
+        ));
+  }
+}
+
+class MenuItemTile extends StatelessWidget {
+  final MenuItem menuItem;
+  const MenuItemTile({Key? key, required this.menuItem}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.fromLTRB(10, 10, 40, 10),
+      child: Row(
+        // crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CachedNetworkImage(
+            imageUrl: menuItem.image,
+            imageBuilder: (context, imageProvider) => Stack(
+              children: [
+                Container(
                   width: 130,
                   height: 130,
-                  child: Center(
-                      child: CircularProgressIndicator(
-                    color: Colors.black,
-                  ))),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Container(
-                child: Row(children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.menuItem.name,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    image: DecorationImage(
+                        image: imageProvider, fit: BoxFit.cover),
                   ),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: List<Widget>.generate(
-                        widget.menuItem.rating,
-                        (index) => const Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                        ),
-                      )),
-                  Icon(_selectedItem
-                      //  && state.menuItems.any((element) => element.name == widget.menuItem.name)
-                      ? Icons.check
-                      : null)
-                ],
-              ),
-            ]))
-          ],
-        ),
+                ),
+              ],
+            ),
+            placeholder: (context, url) => const SizedBox(
+                width: 130,
+                height: 130,
+                child: Center(
+                    child: CircularProgressIndicator(
+                  color: Colors.black,
+                ))),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Container(
+              child: Row(children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  menuItem.name,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: List<Widget>.generate(
+                      menuItem.rating,
+                      (index) => const Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                    )),
+                // Icon(_selectedItem
+                //     //  && state.menuItems.any((element) => element.name == widget.menuItem.name)
+                //     ? Icons.check
+                //     : null)
+              ],
+            ),
+          ]))
+        ],
       ),
     );
   }

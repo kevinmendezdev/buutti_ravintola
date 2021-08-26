@@ -15,13 +15,34 @@ class _CartScreenState extends State<CartScreen> {
     CartBloc _cartBloc = BlocProvider.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('cart'),
+        title: const Text('cart'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                _cartBloc.add(DeleteAllMenuItem());
+              },
+              icon: const Icon(Icons.delete_forever))
+          // PopupMenuButton(
+          //   itemBuilder: (context) {
+          //     return [
+          //       const PopupMenuItem(
+          //         child: Text('delete all'),
+          //       )
+          //     ];
+          //   },
+          //   onSelected: (index) {
+          //     print('$index');
+          //     _cartBloc.add(DeleteAllMenuItem());
+          //   },
+          //   child: const Center(child: Icon(Icons.more_vert)),
+          // ),
+        ],
       ),
       body: Center(
         child: BlocBuilder<CartBloc, CartState>(
           builder: (context, state) {
             if (state.menuItems.isEmpty) {
-              return Center(
+              return const Center(
                 child: Text('no items in your cart where found'),
               );
             }
@@ -34,7 +55,7 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                     subtitle: Text(state.menuItems[index].type),
                     trailing: IconButton(
-                      icon: Icon(Icons.delete),
+                      icon: const Icon(Icons.delete),
                       onPressed: () {
                         _cartBloc.add(DeleteMenuItem(state.menuItems[index]));
                         setState(() {});

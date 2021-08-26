@@ -11,7 +11,7 @@ class MenuItemList extends StatelessWidget {
 
   List<Widget>? getItemsfromList(AsyncSnapshot<QuerySnapshot> snapshot) {
     return snapshot.data?.docs
-        .map((doc) => MenuItemTile(
+        .map((doc) => MenuItemTilePressable(
               menuItem: MenuItem(
                   name: doc["name"] as String,
                   type: doc["type"] as String,

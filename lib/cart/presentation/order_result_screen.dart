@@ -44,14 +44,15 @@ class _OrderResultScreenState extends State<OrderResultScreen> {
               // ),
               Expanded(
                 child: menuItems.isEmpty
-                    ? Center(child: Text('Your order is empty'))
+                    ? const Center(child: Text('Your order is empty'))
                     : ListView.builder(
                         itemCount: state.menuItems.length,
                         itemBuilder: (context, index) {
                           var menuitem = menuItems[index];
                           var menuItemtype = menuitem.type;
-                          Widget _listTiel =
-                              MenuItemTile(menuItem: state.menuItems[index]);
+                          Widget _listTiel = MenuItemTile(
+                            menuItem: state.menuItems[index],
+                          );
                           Widget _listTileWithHeader = Column(
                             children: [
                               Padding(
