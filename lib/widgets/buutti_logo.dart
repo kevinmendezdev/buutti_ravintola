@@ -8,7 +8,7 @@ class BuuttiLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 150,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,

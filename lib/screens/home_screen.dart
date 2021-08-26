@@ -1,9 +1,10 @@
-import 'package:buutti_ravintola/cart/application/bloc.dart';
-import 'package:buutti_ravintola/presentation/screens/main_dish_screen.dart';
+import 'package:buutti_ravintola/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../buutti_logo.dart';
+import '../blocs/cart/cart.dart';
+import '../widgets/buutti_logo.dart';
+import '../widgets/primary_button.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -46,31 +47,5 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ));
-  }
-}
-
-class PrimaryButton extends StatelessWidget {
-  final void Function() onPressed;
-  final String text;
-  const PrimaryButton({
-    Key? key,
-    required this.onPressed,
-    required this.text,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 50,
-      width: MediaQuery.of(context).size.width * .7,
-      child: ElevatedButton(
-          style:
-              ElevatedButton.styleFrom(primary: Theme.of(context).primaryColor),
-          onPressed: onPressed,
-          child: Text(
-            text,
-            style: const TextStyle(fontSize: 20, color: Colors.white),
-          )),
-    );
   }
 }

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../cart/presentation/order_result_screen.dart';
-import 'menu_list_screen.dart';
+import 'screens.dart';
 
 class MainDishScreen extends StatelessWidget {
   const MainDishScreen({
@@ -10,7 +8,7 @@ class MainDishScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MenuItemListScreen(
-      collectionName: "main_dishes",
+      firestoreCollectionName: "main_dishes",
       title: 'Main Dishes',
       nextScreen: SideDishScreen(),
     );
@@ -24,7 +22,7 @@ class SideDishScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MenuItemListScreen(
-      collectionName: "side_dishes",
+      firestoreCollectionName: "side_dishes",
       title: 'Side Dishes',
       nextScreen: DrinkScreen(),
     );
@@ -39,7 +37,7 @@ class DrinkScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MenuItemListScreen(
-      collectionName: "drinks",
+      firestoreCollectionName: "drinks",
       title: 'Drinks',
       isMenuListLastScreen: true,
       nextScreen: OrderResultScreen(),

@@ -1,10 +1,11 @@
+import 'package:buutti_ravintola/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../core/model/menu_item.dart';
-import '../../presentation/screens/home_screen.dart';
-import '../../presentation/widgets/menu_item_tile.dart';
-import '../application/bloc.dart';
+import '../blocs/cart/cart.dart';
+import '../models/menu_item.dart';
+import '../widgets/menu_item_tile.dart';
+import '../widgets/primary_button.dart';
 
 class OrderResultScreen extends StatefulWidget {
   const OrderResultScreen({Key? key}) : super(key: key);
@@ -25,11 +26,11 @@ class _OrderResultScreenState extends State<OrderResultScreen> {
       ),
       body: BlocBuilder<CartBloc, CartState>(
         builder: (context, state) {
-          final List<MenuItem> menuItems = state.menuItems;
-          menuItems.sort((a, b) => a.type.compareTo(b.type));
+          final List<MenuItem> _menuItems = state.menuItems;
+          _menuItems.sort((a, b) => a.type.compareTo(b.type));
           return Column(
             children: [
-              menuItems.isEmpty
+              _menuItems.isEmpty
                   ? const SizedBox()
                   : const Padding(
                       padding: EdgeInsets.fromLTRB(30, 20, 30, 20),
@@ -39,17 +40,14 @@ class _OrderResultScreenState extends State<OrderResultScreen> {
                         style: TextStyle(fontSize: 28),
                       ),
                     ),
-              // const SizedBox(
-              //   height: 30,
-              // ),
               Expanded(
-                child: menuItems.isEmpty
+                child: _menuItems.isEmpty
                     ? const Center(child: Text('Your order is empty'))
                     : ListView.builder(
                         itemCount: state.menuItems.length,
                         itemBuilder: (context, index) {
-                          var menuitem = menuItems[index];
-                          var menuItemtype = menuitem.type;
+                          MenuItem _menuitem = _menuItems[index];
+                          String _menuItemtype = _menuitem.type;
                           Widget _listTiel = MenuItemTile(
                             menuItem: state.menuItems[index],
                           );
@@ -62,7 +60,7 @@ class _OrderResultScreenState extends State<OrderResultScreen> {
                                   width: double.infinity,
                                   color: Colors.black,
                                   child: Text(
-                                    menuItemtype,
+                                    _menuItemtype,
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(
                                         fontSize: 25,
@@ -78,7 +76,7 @@ class _OrderResultScreenState extends State<OrderResultScreen> {
                           if (index == 0) {
                             return _listTileWithHeader;
                           } else {
-                            if (menuItemtype != menuItems[index - 1].type) {
+                            if (_menuItemtype != _menuItems[index - 1].type) {
                               return _listTileWithHeader;
                             } else {
                               return _listTiel;

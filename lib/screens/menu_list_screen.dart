@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../cart/application/bloc.dart';
-import '../../cart/application/cart_bloc.dart';
-import '../../cart/presentation/cart_screen.dart';
+import '../blocs/cart/cart.dart';
 import '../widgets/menu_item_list.dart';
+import 'screens.dart';
 
 class MenuItemListScreen extends StatefulWidget {
-  final String collectionName;
+  final String firestoreCollectionName;
   final String title;
-  // final void Function() onPressedNext;
   final Widget nextScreen;
   final bool isMenuListLastScreen;
   final bool isVerticalTransitionActivated;
   const MenuItemListScreen({
     Key? key,
-    required this.collectionName,
+    required this.firestoreCollectionName,
     required this.title,
-    // required this.onPressedNext,
     this.isMenuListLastScreen = false,
     required this.nextScreen,
     this.isVerticalTransitionActivated = false,
@@ -79,9 +76,6 @@ class _MenuItemListScreenState extends State<MenuItemListScreen> {
               ),
               BlocBuilder<CartBloc, CartState>(
                 builder: (context, state) {
-                  print('cart length');
-                  print(state.menuItems.length);
-                  // print(state.menuItems);
                   return Positioned(
                       top: 0.0,
                       right: 4.0,
@@ -102,7 +96,7 @@ class _MenuItemListScreenState extends State<MenuItemListScreen> {
       ),
       body: Center(
           child: MenuItemList(
-        collectionName: widget.collectionName,
+        firestoreCollectionName: widget.firestoreCollectionName,
       )),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,

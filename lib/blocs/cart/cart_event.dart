@@ -1,4 +1,4 @@
-import 'package:buutti_ravintola/core/model/menu_item.dart';
+import 'package:buutti_ravintola/models/menu_item.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +12,6 @@ abstract class CartEvent extends Equatable {
 
 class AddMenuItem extends CartEvent {
   final MenuItem menuItem;
-
   const AddMenuItem(this.menuItem);
 
   @override

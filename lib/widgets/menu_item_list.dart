@@ -1,12 +1,13 @@
-import 'package:buutti_ravintola/core/model/menu_item.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../models/menu_item.dart';
 import 'menu_item_tile.dart';
+import 'primary_progress_indicator.dart';
 
 class MenuItemList extends StatelessWidget {
-  final String collectionName;
-  const MenuItemList({Key? key, required this.collectionName})
+  final String firestoreCollectionName;
+  const MenuItemList({Key? key, required this.firestoreCollectionName})
       : super(key: key);
 
   List<Widget>? getItemsfromList(AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -24,13 +25,12 @@ class MenuItemList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-        stream:
-            FirebaseFirestore.instance.collection(collectionName).snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection(firestoreCollectionName)
+            .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
-            return CircularProgressIndicator(
-              color: Theme.of(context).primaryColor,
-            );
+            return const PrimaryProgressIndicator();
           }
           return ListView(children: getItemsfromList(snapshot)!);
         });

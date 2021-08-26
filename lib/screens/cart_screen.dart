@@ -1,4 +1,4 @@
-import 'package:buutti_ravintola/cart/application/bloc.dart';
+import 'package:buutti_ravintola/blocs/cart/cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,20 +22,6 @@ class _CartScreenState extends State<CartScreen> {
                 _cartBloc.add(DeleteAllMenuItem());
               },
               icon: const Icon(Icons.delete_forever))
-          // PopupMenuButton(
-          //   itemBuilder: (context) {
-          //     return [
-          //       const PopupMenuItem(
-          //         child: Text('delete all'),
-          //       )
-          //     ];
-          //   },
-          //   onSelected: (index) {
-          //     print('$index');
-          //     _cartBloc.add(DeleteAllMenuItem());
-          //   },
-          //   child: const Center(child: Icon(Icons.more_vert)),
-          // ),
         ],
       ),
       body: Center(
