@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../cart/application/bloc.dart';
 import '../../core/model/menu_item.dart';
 
-class MenuItemTilePressable extends StatefulWidget {
+class MenuItemTilePressable extends StatelessWidget {
   final MenuItem menuItem;
   const MenuItemTilePressable({
     Key? key,
@@ -13,53 +13,41 @@ class MenuItemTilePressable extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _MenuItemTilePressableState createState() => _MenuItemTilePressableState();
-}
-
-class _MenuItemTilePressableState extends State<MenuItemTilePressable> {
-  late bool _selectedItem;
-  late CartBloc _cartBloc;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _selectedItem = false;
-    _cartBloc = BlocProvider.of(context);
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return InkWell(
-        onTap: () {
-          setState(() {
-            _selectedItem = !_selectedItem;
-            if (_selectedItem) {
-              _cartBloc.add(AddMenuItem(MenuItem(
-                  name: widget.menuItem.name,
-                  type: widget.menuItem.type,
-                  image: widget.menuItem.image)));
-            } else {
-              _cartBloc.add(DeleteMenuItem(MenuItem(
-                  name: widget.menuItem.name,
-                  type: widget.menuItem.type,
-                  image: widget.menuItem.image)));
-            }
-          });
-        },
-        child: Stack(
-          children: [
-            MenuItemTile(
-              menuItem: widget.menuItem,
-            ),
-            Positioned(
-                right: 10,
-                top: 50,
-                child: Icon(_selectedItem
-                    //  && state.menuItems.any((element) => element.name == widget.menuItem.name)
-                    ? Icons.check
-                    : null))
-          ],
-        ));
+    CartBloc _cartBloc = BlocProvider.of(context);
+    return BlocBuilder<CartBloc, CartState>(
+      builder: (context, state) {
+        return InkWell(
+            onTap: () {
+              if (state.menuItems
+                  .any((element) => element.name == menuItem.name)) {
+                _cartBloc.add(DeleteMenuItem(MenuItem(
+                    name: menuItem.name,
+                    type: menuItem.type,
+                    image: menuItem.image)));
+              } else {
+                _cartBloc.add(AddMenuItem(MenuItem(
+                    name: menuItem.name,
+                    type: menuItem.type,
+                    image: menuItem.image)));
+              }
+            },
+            child: Stack(
+              children: [
+                MenuItemTile(
+                  menuItem: menuItem,
+                ),
+                Positioned(
+                    right: 10,
+                    top: 50,
+                    child: Icon(state.menuItems
+                            .any((element) => element.name == menuItem.name)
+                        ? Icons.check
+                        : null))
+              ],
+            ));
+      },
+    );
   }
 }
 

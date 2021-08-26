@@ -81,7 +81,7 @@ class _MenuItemListScreenState extends State<MenuItemListScreen> {
                 builder: (context, state) {
                   print('cart length');
                   print(state.menuItems.length);
-                  print(state.menuItems);
+                  // print(state.menuItems);
                   return Positioned(
                       top: 0.0,
                       right: 4.0,

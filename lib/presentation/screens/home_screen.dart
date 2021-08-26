@@ -1,5 +1,7 @@
+import 'package:buutti_ravintola/cart/application/bloc.dart';
 import 'package:buutti_ravintola/presentation/screens/main_dish_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../buutti_logo.dart';
 
@@ -8,6 +10,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CartBloc _cartBloc = BlocProvider.of(context);
     return Scaffold(
         appBar: AppBar(
           title: const Text('Buutti Ravintola'),
@@ -26,12 +29,13 @@ class HomeScreen extends StatelessWidget {
                         TextStyle(fontSize: 27, fontWeight: FontWeight.bold)),
               ),
               const BuuttiLogo(),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               PrimaryButton(
                 text: 'start order',
                 onPressed: () {
+                  _cartBloc.add(DeleteAllMenuItem());
                   Navigator.push(
                     context,
                     MaterialPageRoute(
