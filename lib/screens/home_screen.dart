@@ -6,9 +6,15 @@ import '../blocs/cart/cart.dart';
 import '../widgets/buutti_logo.dart';
 import '../widgets/primary_button.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  double targetValue = 150;
   @override
   Widget build(BuildContext context) {
     CartBloc _cartBloc = BlocProvider.of(context);
@@ -29,7 +35,7 @@ class HomeScreen extends StatelessWidget {
                     style:
                         TextStyle(fontSize: 27, fontWeight: FontWeight.bold)),
               ),
-              const BuuttiLogo(),
+              const BuuttiLogoAnimated(),
               const SizedBox(
                 height: 40,
               ),
