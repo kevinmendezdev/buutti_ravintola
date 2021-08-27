@@ -27,4 +27,6 @@ class DeleteMenuItem extends CartEvent {
   List<Object> get props => [menuItem];
 }
 
-class DeleteAllMenuItem extends CartEvent {}
+class DeleteAllMenuItem extends CartEvent {
+  const DeleteAllMenuItem();
+}
