@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1017072400173:android:7d3e610fbf4e7fa04285a4",
+        "mobilesdk_app_id": "1:1017072400173:android:8cf818c5a99aa86a4285a4",
         "android_client_info": {
-          "package_name": "com.buutti_ravintola"
+          "package_name": "com.buutti.ravintola"
         }
       },
       "oauth_client": [
@@ -29,6 +29,13 @@
             {
               "client_id": "1017072400173-2q4j2okc099md7ri3a3ldiscg37585kh.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1017072400173-5ldgpiamai2v9vpg0gokgoenf00o7p1j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.buutti.ravintola"
+              }
             }
           ]
         }

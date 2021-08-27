@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.buutti_ravintola">
+    package="com.buutti.ravintola">
    <application
         android:label="Buutti ravintola"
         android:icon="@mipmap/ic_launcher">
