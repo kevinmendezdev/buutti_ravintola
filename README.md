@@ -1,7 +1,7 @@
 # Buutti Ravintola
 
 Buutti Ravintola is an app written for buutti codematch. The app is written in flutter and uses firebase (firestore) for the backend of the app. 
-The app implements [bloc](https://pub.dev/packages/bloc) state management. The app logic was tested using [bloc test](https://pub.dev/packages/bloc_test) for performing unit tests.  The app works for both android and ios. 
+The app implements [bloc](https://pub.dev/packages/bloc) state management. The app logic was tested using [bloc test](https://pub.dev/packages/bloc_test) for performing unit tests.  The app works for both android and ios. Make sure the app is connected to the internet (wifi/mobile data) before using the app.
 The structure of the project is the following:
 - screens 
 - widgets
