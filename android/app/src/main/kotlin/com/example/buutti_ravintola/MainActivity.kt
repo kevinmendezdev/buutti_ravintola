@@ -1,4 +1,4 @@
-package com.buutti_ravintola
+package com.buutti.ravintola
 
 import io.flutter.embedding.android.FlutterActivity
 
