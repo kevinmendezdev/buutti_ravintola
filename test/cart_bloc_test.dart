@@ -10,7 +10,7 @@ void main() {
   const MenuItem menuitemTaco =
       MenuItem(name: 'taco', type: 'main', image: 'imagefromfirebase');
 
-  group('YOUR GROUP OF TESTS', () {
+  group('Cart bloc tests', () {
     blocTest<CartBloc, CartState>('emits [] when nothing is added',
         build: () => CartBloc(), expect: () => []);
     blocTest<CartBloc, CartState>('when AddMenuItem is called ',
