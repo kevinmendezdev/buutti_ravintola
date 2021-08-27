@@ -19,7 +19,7 @@ class _CartScreenState extends State<CartScreen> {
         actions: [
           IconButton(
               onPressed: () {
-                _cartBloc.add(DeleteAllMenuItem());
+                _cartBloc.add(const DeleteAllMenuItem());
               },
               icon: const Icon(Icons.delete_forever))
         ],

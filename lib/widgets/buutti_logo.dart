@@ -22,7 +22,6 @@ class BuuttiLogo extends StatelessWidget {
               Positioned(
                 top: -28,
                 left: -9,
-                // right: 200,
                 child: Transform.rotate(
                   angle: -math.pi / 6,
                   child: const LogoImage(

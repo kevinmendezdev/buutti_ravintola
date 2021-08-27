@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
               PrimaryButton(
                 text: 'start order',
                 onPressed: () {
-                  _cartBloc.add(DeleteAllMenuItem());
+                  _cartBloc.add(const DeleteAllMenuItem());
                   Navigator.push(
                     context,
                     MaterialPageRoute(

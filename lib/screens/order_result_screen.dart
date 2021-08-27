@@ -88,7 +88,7 @@ class _OrderResultScreenState extends State<OrderResultScreen> {
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: PrimaryButton(
                     onPressed: () {
-                      _cartBloc.add(DeleteAllMenuItem());
+                      _cartBloc.add(const DeleteAllMenuItem());
                       Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
                               builder: (context) => const HomeScreen()),
